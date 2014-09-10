@@ -70,7 +70,7 @@ Multiple ValidationRuleSet's can be applied to chain validation. The second rule
 
 I make it a habit to normalize my input to make sure that all keys are availble and not leave it to the input that is put into the validator when the `validate(array $input)` is called. The normalized input is returned when the `validate` method is called. See below..
 
-### controller
+### Controller
 
 In your controller action (or closure, or command, or whatever you prefer) use the validator like this:
 
@@ -84,6 +84,24 @@ Route::get('/account/register', function () {
     
   // register the account
 });
+```
+
+### Exceptions
+
+When the defined rule sets for the validator class do not validate, an exception is thrown of type `ValidatorException`. You can catch this wherever you want and retrieve the message bag from it to add the the session for returning the validation messages. I like putting it in the global.php file like this:
+
+_Example:_
+
+```php
+
+// in global.php..
+
+App::error(function (\Gnoesiboe\Validation\ValidatorException $exception) {
+    return Redirect::back()
+        ->withInput($exception->getInput())
+        ->withErrors($exception->getMessageBag());
+});
+
 ```
 
 ## ValidationRuleSet
