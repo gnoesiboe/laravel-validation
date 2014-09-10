@@ -1,0 +1,19 @@
+{
+    "name": "gnoesiboe/validation",
+    "description": "",
+    "authors": [
+        {
+            "name": "Gijs Nieuwenhuis",
+            "email": "gijsnieuwenhuis@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "autoload": {
+        "psr-0": {
+            "Gnoesiboe\\Validation": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}
